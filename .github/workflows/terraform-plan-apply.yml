@@ -23,12 +23,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    # Login to Azure via Azure CLI
-    - name: Azure Login
-      uses: Azure/login@v1
-      with:
-        creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
-
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
@@ -38,6 +32,12 @@ jobs:
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
+
+    # Login to Azure via Azure CLI
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: '{"clientId":"${{ secrets.CLIENT_ID }}","clientSecret":"${{ secrets.CLIENT_SECRET }}","subscriptionId":"${{ secrets.SUBSCRIPTION_ID }}","tenantId":"${{ secrets.TENANT_ID }}"}'
 
      # Generates an execution plan for Terraform
     - name: Terraform Plan
