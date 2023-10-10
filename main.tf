@@ -6,7 +6,7 @@ terraform {
     }
   }
 
-  backend "azurem" {
+  backend "azurerm" {
     resource_group_name  = "StorageRGMP"
     storage_account_name = "taskboardstoragemp"
     container_name       = "taskboardcontainermp"
