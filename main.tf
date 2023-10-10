@@ -5,6 +5,13 @@ terraform {
       version = "3.75.0"
     }
   }
+
+  backend "azurem" {
+    resource_group_name  = "StorageRGMP"
+    storage_account_name = "taskboardstoragemp"
+    container_name       = "taskboardcontainermp"
+    key                  = "terraform.tfstate"
+  }
 }
 
 provider "azurerm" {
